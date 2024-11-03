@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1730475300113,
+        "name": "website",
+        "rewrites": [
+            {
+                "port": 3000,
+                "requestHeadersRegex": {
+                    "Host": "/^(?!preflight\\.strayfade\\.com$).*$/"
+                },
+                "requestHeadersExact": {
+                    "Connection": "keep-alive"
+                }
+            }
+        ],
+        "commandLines": [
+            {
+                "relativeWorkingDir": "../website",
+                "command": "node Server 3000"
+            }
+        ],
+        "logLines": [
+            "None"
+        ]
+    }
+]

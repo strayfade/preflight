@@ -1,0 +1,19 @@
+footer {
+    height: max-content;
+    font-family: var(--font-family);
+    padding: 10px 0px;
+    background-color: black;
+    color: white;
+}
+
+.footer-inner {
+    display: flex;
+    width: max-content;
+    margin: 0px auto;
+}
+
+footer p {
+    margin: 0px;
+    font-size: 10px;
+    text-align: center;
+}

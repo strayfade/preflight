@@ -1,0 +1,31 @@
+.block {
+    height: calc(100vh - 50px);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50px;
+}
+
+.hero-container {
+    position: absolute;
+    top: calc(80vh / 2);
+    transform: translateY(-50%);
+    width: 100vw;
+}
+
+.hero,
+.hero-subtitle {
+    text-align: center;
+}
+
+.hero {
+    font-weight: bold;
+    font-size: 48px;
+    font-style: italic;
+    margin-top: 0px;
+}
+
+.hero-subtitle {
+    font-weight: normal;
+    font-size: 14px;
+}
