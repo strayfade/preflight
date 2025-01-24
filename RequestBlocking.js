@@ -13,7 +13,6 @@ const BlacklistedPaths = [
     'autodiscover',
     'vendor',
     'www',
-    'api',
     'telescope',
     'misc',
     'shell',
