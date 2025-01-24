@@ -5,12 +5,11 @@
         "rewrites": [
             {
                 "port": 3000,
-                "requestHeadersRegex": {
-"Host": "^strayfa(?:de\\.com|\\.de)$"
-                },
-                "requestHeadersExact": {
-                    
-                }
+                "domains": [
+                    "strayfa.de",
+                    "strayfade.com",
+                    "sorafn.com"
+                ]
             }
         ],
         "commandLines": [

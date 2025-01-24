@@ -63,27 +63,10 @@ const SpawnAllInstances = async () => {
             App.use(createProxyMiddleware({
                 target: `http://127.0.0.1:${Rewrite.port}`,
                 pathFilter: (Path, Request) => {
-                    let Returns = true
-                    for (const HeaderName in Rewrite.requestHeadersRegex) {
-                        if (!(new RegExp(Rewrite.requestHeadersRegex[HeaderName]).test(Request.get(HeaderName)))) {
-                            Returns = false
-                        }
-                    }
-                    for (const HeaderName in Rewrite.requestHeadersExact) {
-                        if (Rewrite.requestHeadersExact[HeaderName] != Request.get(HeaderName)) {
-                            Returns = false
-                        }
-                    }
-                    return Returns
+                    return Rewrite.domains.includes(Request.get("Host"))
                 }
             }))
-            Log(`Created proxy to ${`http://127.0.0.1:${Rewrite.port}`} with the following conditions:`)
-            for (const HeaderName in Rewrite.requestHeadersRegex) {
-                Log(`    Header "${HeaderName}" matches regular expression "${Rewrite.requestHeadersRegex[HeaderName]}"`)
-            }
-            for (const HeaderName in Rewrite.requestHeadersExact) {
-                Log(`    Header "${HeaderName}" exactly matches "${Rewrite.requestHeadersExact[HeaderName]}"`)
-            }
+            Log(`Created proxy to ${`http://127.0.0.1:${Rewrite.port}`}`)
         }
     }
 
