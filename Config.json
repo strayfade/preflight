@@ -10,6 +10,12 @@
                     "strayfade.com",
                     "sorafn.com"
                 ]
+            },
+            {
+                "port": 6970,
+                "domains": [
+                    "xauth.strayfade.com"
+                ]
             }
         ],
         "commandLines": [
