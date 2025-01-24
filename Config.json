@@ -6,10 +6,10 @@
             {
                 "port": 3000,
                 "requestHeadersRegex": {
-
+"Host": "^strayfa(?:de\.com|\.de)$"
                 },
                 "requestHeadersExact": {
-                    "Host": "strayfade.com"
+                    
                 }
             }
         ],
