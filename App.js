@@ -63,6 +63,7 @@ const SpawnAllInstances = async () => {
             App.use(createProxyMiddleware({
                 target: `http://127.0.0.1:${Rewrite.port}`,
                 pathFilter: (Path, Request) => {
+                    Log(Request.get("Host"))
                     return Rewrite.domains.includes(Request.get("Host"))
                 }
             }))
@@ -71,7 +72,7 @@ const SpawnAllInstances = async () => {
     }
 
     App.get("*", WrapAsync(async (Request, Response) => {
-	Response.sendStatus(403)
+	    Response.sendStatus(403)
     }))
 }
 SpawnAllInstances()
