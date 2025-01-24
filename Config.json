@@ -16,6 +16,10 @@
             {
                 "relativeWorkingDir": "../website",
                 "command": "node Server 3000"
+            },
+            {
+                "relativeWorkingDir": "../web",
+                "command": "node App"
             }
         ],
         "logLines": [
