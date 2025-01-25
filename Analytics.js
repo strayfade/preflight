@@ -10,7 +10,7 @@ const GetIP = (Request) => {
 const Middleware = (Request, Response, Next) => {
     const IP = GetIP(Request)
     //console.log(path.join(__dirname, "../ips"), IP)
-    fs.appendFile(path.join(__dirname, "../ips"), IP, {encoding: "utf-8"})
+    fs.appendFile(path.join(__dirname, "../ips"), `${IP}\n`, {encoding: "utf-8"})
     Next()
 }
 module.exports = { Middleware }
