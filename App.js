@@ -77,6 +77,8 @@ const SpawnAllInstances = async () => {
 SpawnAllInstances()
 
 // Request Logging
+const Analytics = require('./Analytics')
+App.use(Analytics.Middleware)
 const RequestBlocking = require('./RequestBlocking')
 App.use(RequestBlocking.Middleware)
 App.use(WrapAsync(async (Request, Response, Next) => {
