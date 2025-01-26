@@ -36,7 +36,7 @@ const saveIp = async (Request) => {
                 Log(`Saved new IP ${IP}`, LogColors.Success)
             }
             catch {
-                Log(`${response.data}`, LogColors.Error)
+                console.error(response.data)
             }
         }
         catch (error) {
