@@ -34,8 +34,9 @@ const saveIp = async (Request) => {
             await fs.appendFile(csvPath, `${encodedLine}\n`, { encoding: "utf-8" })
             Log(`Saved new IP ${IP}`, LogColors.Success)
         }
-        catch {
+        catch (error) {
             Log(`Failed to save IP ${IP}`, LogColors.ErrorVisible)
+            Log(`${error}`, LogColors.Error)
         }
     }
 
