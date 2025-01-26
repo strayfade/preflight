@@ -22,7 +22,7 @@ const Middleware = (Request, Response, Next) => {
     let Blocked = false
     for (let x = 0; x < BlacklistedPaths.length; x++) {
         if (Request.path.toString().toLowerCase().includes(BlacklistedPaths[x].toLowerCase())) {
-            Log(`[LogURL] Blocked URL ${Request.path} with flag "${BlacklistedPaths[x]}"`, LogColors.ErrorVisible)
+            Log(`[LogURL] Blocked URL ${Request.path} with flag "${BlacklistedPaths[x]}"`, LogColors.Error)
             Response.sendStatus(404)
             Blocked = true
             break
