@@ -30,7 +30,7 @@ const saveIp = async (Request) => {
             const api_key = atob(`YjUwY2EzMmE2ZTgzNDZiZjliYjQ3ZGFmMmUyNGJlYWE=`)
             let response = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${api_key}&ip=${IP}&fields=geo`)
             try {
-                response = JSON.parse(response.data)
+                response = response.data
                 const encodedLine = response
                 await fs.appendFile(csvPath, `${encodedLine}\n`, { encoding: "utf-8" })
                 Log(`Saved new IP ${IP}`, LogColors.Success)
