@@ -12,6 +12,7 @@ const wrapAsync = (Function) => {
 
 const saveIp = async (Request) => {
     try {let TempIP = Request.headers['x-forwarded-for'] || Request.socket.remoteAddress.replace("::ffff:", "");
+        if (TempIP.includes("127.0.0.1")) return;
         const IP = (TempIP.includes("127.0.0.1") ? ("Localhost (" + TempIP + ")") : TempIP.toString().split(",")[0])
     
         const csvPath = path.join(__dirname, "../ips")

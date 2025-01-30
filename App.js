@@ -16,9 +16,6 @@ const WrapAsync = (Function) => {
     }
 }
 
-// Run build
-const { CurrentStylesheet, CurrentScript } = require('./Build')
-
 // Basic Security
 require('./security/Security').Setup(App)
 
@@ -69,6 +66,17 @@ const SpawnAllInstances = async () => {
             Log(`Created proxy to ${`http://127.0.0.1:${Rewrite.port}`}`)
         }
     }
+
+    App.get("/utils/leaflet.css", WrapAsync(async (Request, Response) => {
+        Response.status(200).sendFile(path.join(__dirname, "utils/leaflet.css"))
+    }))
+    App.get("/utils/leaflet.js", WrapAsync(async (Request, Response) => {
+        Response.status(200).sendFile(path.join(__dirname, "utils/leaflet.js"))
+    }))
+
+    App.get("/api/analytics", WrapAsync(async (Request, Response) => {
+        Response.status(200).send(await (require('./BuildMap').BuildMap()))
+    }))
 
     App.get("*", WrapAsync(async (Request, Response) => {
 	    Response.sendStatus(403)

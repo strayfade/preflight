@@ -15,6 +15,7 @@ const Setup = (App) => {
                     ...Helmet.contentSecurityPolicy.getDefaultDirectives(),
                     'script-src': ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
                     'script-src-attr': null, // Fixes errors in some browsers (I'm looking at you, Firefox)
+                    'img-src': ["a.tile.openstreetmap.org"]
                 },
             },
         }),
