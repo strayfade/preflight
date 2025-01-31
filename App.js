@@ -20,7 +20,7 @@ const WrapAsync = (Function) => {
 require('./security/Security').Setup(App)
 
 const { spawn } = require('child_process')
-const SpawnInstance = async (CommandLine, ParentServer, OutSpawnedRef) => {
+const SpawnInstance = async (CommandLine, ParentServer, index) => {
     const Args = CommandLine.command.split(" ")
     const FirstArg = Args[0]
     Args.splice(0, 1)
@@ -28,20 +28,21 @@ const SpawnInstance = async (CommandLine, ParentServer, OutSpawnedRef) => {
     const Process = spawn(FirstArg, Args, {
         cwd: WorkingDir
     })
+    let ServerName = ParentServer.commandLines[index].relativeWorkingDir.split("/")[1]
     Process.on('spawn', async () => {
-        Log(`Instance "${ParentServer.name}" spawned using command ${WorkingDir} % ${CommandLine.command}`)
+        Log(`Instance "${ServerName}" spawned using command ${WorkingDir} % ${CommandLine.command}`)
     })
     Process.on('error', (data) => {
-        console.log(`[${ParentServer.name}] ${data}`)
+        console.log(`[${ServerName}] ${data}`)
     })
     Process.on('message', (data) => {
-        console.log(`[${ParentServer.name}] ${data}`)
+        console.log(`[${ServerName}] ${data}`)
     })
     Process.stdout.on('data', (data) => {
-        console.log(`[${ParentServer.name}] ${data.toString().replace("\n", "")}`)
+        console.log(`[${ServerName}] ${data.toString().replace("\n", "")}`)
     })
     Process.stderr.on('data', (data) => {
-        console.log(`[${ParentServer.name}] ${data.toString()}`)
+        console.log(`[${ServerName}] ${data.toString()}`)
     })
 }
 
@@ -54,7 +55,7 @@ const SpawnAllInstances = async () => {
     const Instances = JSON.parse(await fs.readFile("Config.json", { encoding: "utf-8" }))
     for (const Instance of Instances) {
         for (const CommandLine of Instance.commandLines) {
-            await SpawnInstance(CommandLine, Instance)
+            await SpawnInstance(CommandLine, Instance, Instance.commandLines.indexOf(CommandLine))
         }
         for (const Rewrite of Instance.rewrites) {
             App.use(createProxyMiddleware({
@@ -67,15 +68,8 @@ const SpawnAllInstances = async () => {
         }
     }
 
-    App.get("/utils/leaflet.css", WrapAsync(async (Request, Response) => {
-        Response.status(200).sendFile(path.join(__dirname, "utils/leaflet.css"))
-    }))
-    App.get("/utils/leaflet.js", WrapAsync(async (Request, Response) => {
-        Response.status(200).sendFile(path.join(__dirname, "utils/leaflet.js"))
-    }))
-
     App.get("/api/analytics", WrapAsync(async (Request, Response) => {
-        Response.status(200).send(await (require('./BuildMap').BuildMap()))
+        Response.status(200).sendFile(path.join(__dirname, "../ips"))
     }))
 
     App.get("*", WrapAsync(async (Request, Response) => {

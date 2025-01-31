@@ -38,7 +38,7 @@
             },
             {
                 "relativeWorkingDir": "../landing",
-                "command": "npm run develop"
+                "command": "node index"
             }
         ],
         "logLines": [
