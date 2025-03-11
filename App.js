@@ -84,7 +84,7 @@ App.use(Analytics.Middleware)
 const RequestBlocking = require('./RequestBlocking')
 App.use(RequestBlocking.Middleware)
 App.use(WrapAsync(async (Request, Response, Next) => {
-    Log(`[LogURL] ${Request.path}`, LogColors.Success)
+    Log(`[LogURL] ${Request.protocol}://${Request.headers["host"]}${Request.originalUrl}`, LogColors.Success)
     Next()
 }))
 

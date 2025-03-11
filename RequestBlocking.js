@@ -20,9 +20,10 @@ const BlacklistedPaths = [
 
 const Middleware = (Request, Response, Next) => {
     let Blocked = false
+    const FullUrl = `${Request.protocol}://${Request.headers["host"]}${Request.originalUrl}`
     for (let x = 0; x < BlacklistedPaths.length; x++) {
-        if (Request.path.toString().toLowerCase().includes(BlacklistedPaths[x].toLowerCase())) {
-            Log(`[LogURL] Blocked URL ${Request.path} with flag "${BlacklistedPaths[x]}"`, LogColors.Error)
+        if (FullUrl.toString().toLowerCase().includes(BlacklistedPaths[x].toLowerCase())) {
+            Log(`[LogURL] Blocked URL ${FullUrl} with flag "${BlacklistedPaths[x]}"`, LogColors.Error)
             Response.sendStatus(404)
             Blocked = true
             break
