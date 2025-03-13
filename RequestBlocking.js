@@ -12,7 +12,6 @@ const BlacklistedPaths = [
     'portal',
     'autodiscover',
     'vendor',
-    'www',
     'telescope',
     'misc',
     'shell',
