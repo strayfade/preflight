@@ -25,6 +25,12 @@
                 "domains": [
                     "xauth.strayfade.com"
                 ]
+            },
+            {
+                "port": 2300,
+                "domains": [
+                    "javawebsocket.strayfade.com"
+                ]
             }
         ],
         "commandLines": [
@@ -38,6 +44,10 @@
             },
             {
                 "relativeWorkingDir": "../landing",
+                "command": "node index"
+            },
+            {
+                "relativeWorkingDir": "../cs120-finalproject/webserver",
                 "command": "node index"
             }
         ],
