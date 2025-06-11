@@ -31,12 +31,22 @@
                 "domains": [
                     "javawebsocket.strayfade.com"
                 ]
+            },
+            {
+                "port": 5600,
+                "domains": [
+                    "kickapi-dev.strayfade.com"
+                ]
             }
         ],
         "commandLines": [
             {
                 "relativeWorkingDir": "../website",
                 "command": "node Server 3000"
+            },
+            {
+                "relativeWorkingDir": "../kick-webdriver",
+                "command": "node index"
             },
             {
                 "relativeWorkingDir": "../web",
