@@ -4,14 +4,21 @@
         "name": "website",
         "rewrites": [
             {
-                "port": 3000,
+                "port": "http://192.168.6.31:80",
                 "domains": [
-                    "strayfa.de",
-                    "strayfade.com"
+                    "teapot.strayfade.com",
+                    "teapot.strayfa.de"
                 ]
             },
             {
-                "port": 6980,
+                "port": "http://127.0.0.1:3000",
+                "domains": [
+                    "strayfade.com",
+                    "strayfa.de"
+                ]
+            },
+            {
+                "port": "http://127.0.0.1:6980",
                 "domains": [
                     "sorafn.com",
                     "sellingfent.online",
@@ -21,19 +28,19 @@
                 ]
             },
             {
-                "port": 6970,
+                "port": "http://127.0.0.1:6970",
                 "domains": [
                     "xauth.strayfade.com"
                 ]
             },
             {
-                "port": 2300,
+                "port": "http://127.0.0.1:2300",
                 "domains": [
                     "javawebsocket.strayfade.com"
                 ]
             },
             {
-                "port": 5600,
+                "port": "http://127.0.0.1:5600",
                 "domains": [
                     "kickapi-dev.strayfade.com"
                 ]
