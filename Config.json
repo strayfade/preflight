@@ -4,7 +4,7 @@
         "name": "website",
         "rewrites": [
             {
-                "port": "http://192.168.6.31:80",
+                "port": "http://192.168.11.62:80",
                 "domains": [
                     "teapot.strayfade.com",
                     "teapot.strayfa.de"
